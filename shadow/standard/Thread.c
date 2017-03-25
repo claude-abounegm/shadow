@@ -7,10 +7,10 @@
 #include <stdlib.h>
 #include <pthread.h>
 
-shadow_Pointer_t* __ShadowThread_Spawn(shadow_Thread_t* this, void* (*thread_start)(void*))
+shadow_Pointer_t* __shadowStandardThread_Spawn(shadow_Thread_t* ref, void* (*thread_start)(void*))
 {
 	pthread_t* ptr = malloc(sizeof(pthread_t));
-	if(pthread_create(ptr, NULL, thread_start, this) != 0) {
+	if(pthread_create(ptr, NULL, thread_start, ref) != 0) {
 		free(ptr);
 		ptr = NULL;
 	}

@@ -41,8 +41,8 @@
 ;---------------------
 ; Method Declarations
 ;---------------------
-; @ShadowThread.c
-declare %shadow.natives..ShadowPointer* @__ShadowThread_Spawn(%shadow.standard..Thread*, %void* (%shadow.standard..Thread*)*)
+; @Thread.c
+declare %shadow.natives..ShadowPointer* @__shadowStandardThread_Spawn(%shadow.standard..Thread*, %void* (%shadow.standard..Thread*)*)
 
 ; runnerNative() => ();
 declare void @shadow.standard..Thread_MrunnerNative(%shadow.standard..Thread*)
@@ -70,7 +70,7 @@ entry:
 define %shadow.natives..ShadowPointer* @shadow.standard..Thread_MspawnThread(%shadow.standard..Thread*) {
 entry:
 	; spawn the thread and get its pointer
-	%call = call %shadow.natives..ShadowPointer* @__ShadowThread_Spawn(%shadow.standard..Thread* %0, %void* (%shadow.standard..Thread*)* @thread_start)
+	%call = call %shadow.natives..ShadowPointer* @__shadowStandardThread_Spawn(%shadow.standard..Thread* %0, %void* (%shadow.standard..Thread*)* @thread_start)
 	ret %shadow.natives..ShadowPointer* %call
 }
 

@@ -27,47 +27,16 @@
 ; Class
 %shadow.standard..Class = type opaque
 
-; ShadowPointer
+; Pointer
 %shadow.natives..Pointer = type opaque
-
-; String
-%shadow.standard..String_methods = type opaque
-%shadow.standard..String = type { %ulong, %shadow.standard..Class*, %shadow.standard..String_methods*, {{ %ulong, %byte }*, [1 x %int] }, %boolean }
 
 ;---------------------------
 ; Custom Method Definitions
 ;---------------------------
-; ShadowString.c
-define void @_shadow_UnpackString(%shadow.standard..String*, {{ %ulong, %byte }*, [1 x %int] }**, %boolean*) {
-entry:
-	%array.addr = getelementptr inbounds %shadow.standard..String, %shadow.standard..String* %0, i32 0, i32 3
-	store {{ %ulong, %byte }*, [1 x %int] }* %array.addr, {{ %ulong, %byte }*, [1 x %int] }** %1
-	
-	%ascii.addr = getelementptr inbounds %shadow.standard..String, %shadow.standard..String* %0, i32 0, i32 4
-	%ascii = load %boolean, %boolean* %ascii.addr
-	store %boolean %ascii, %boolean* %2
-	
-	ret void
-}
-
-; ShadowArray.c
-%ShadowArray = type {{ %ulong, %void }*, [1 x %int] }
-define void @_shadow_UnpackArray(%ShadowArray*, %int*, %void**) {
-entry:
-	%arrayData = load %ShadowArray, %ShadowArray* %0
-	
-	%size = extractvalue %ShadowArray %arrayData, 1, 0
-	store %int %size, %int* %1
-
-	%array.ptr = extractvalue %ShadowArray %arrayData, 0
-	%array = getelementptr inbounds { %ulong, %void }, { %ulong, %void }* %array.ptr, i32 0, i32 1
-	store %void* %array, %void** %2
-	
-	ret void
-}
-
-; ShadowPointer.h
+; Pointer.h
 declare %shadow.natives..Pointer* @shadow.natives..Pointer_McreateNative_long_boolean(%shadow.natives..Pointer*, %long, %boolean)
+declare %long @shadow.natives..Pointer_MgetAddressNative(%shadow.natives..Pointer*)
+
 define %shadow.natives..Pointer* @_shadow_CreatePointer(%void*, %boolean) {
 entry:
 	%address = ptrtoint %void* %0 to %long
@@ -75,8 +44,6 @@ entry:
 	ret %shadow.natives..Pointer* %call
 }
 
-; ShadowPointer.h
-declare %long @shadow.natives..Pointer_MgetAddressNative(%shadow.natives..Pointer*)
 define %void* @_shadow_ExtractPointer(%shadow.natives..Pointer*) {
 entry:
 	%address = call %long @shadow.natives..Pointer_MgetAddressNative(%shadow.natives..Pointer* %0)

@@ -25,6 +25,6 @@ char* shadow_UnpackStringToCStr(shadow_String_t*);
  * Takes a ShadowString and stores the data in the ShadowStringData struct supplied
  * as the second argument.
  */
-void shadow_UnpackString(shadow_String_t*, ShadowStringData* str);
+ShadowStringData* shadow_UnpackString(shadow_String_t* shadowString, ShadowStringData* str);
 
 #endif
