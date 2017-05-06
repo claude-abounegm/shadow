@@ -18,6 +18,8 @@ class shadow:test@ExternalsTest
 	// prints the string representation of the Class object for ExternalsTest and all primitives
 	private readonly extern __shadowExternalTest_PrintClasses(ExternalsTest instance) => ();	
 	
+	//private readonly extern __shadowExternalTest_ThrowException(Exception e) => ();
+	
 	immutable Pointer ptr;
 	int offset = 1000;
 	
@@ -32,6 +34,12 @@ class shadow:test@ExternalsTest
 		__shadowExternalTest_CreateString();
 		__shadowExternalTest_PrintPointerData(this, ptr);
 		__shadowExternalTest_PrintClasses(this);
+		
+		/*try {
+			__shadowExternalTest_ThrowException(Exception:create("This is an exception"));
+		} catch (Exception e) {
+			Console.printLine(e);
+		}*/
 	}
 	
 	public readonly toString() => (String)
@@ -43,6 +51,11 @@ class shadow:test@ExternalsTest
 	{
 		Console.printLine(number + offset);
 	}
+	
+	/*private extern _shadowExternalTest_ThrowException(Exception e) => ()
+	{
+		throw e;
+	}*/
 	
 	public destroy
 	{

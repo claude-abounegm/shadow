@@ -1,6 +1,14 @@
 #ifndef SHADOW_H
 #define SHADOW_H
 
+#ifdef __cplusplus
+#define SHADOW_NOMANGLE_START extern "C" {
+#define SHADOW_NOMANGLE_END }
+#else
+#define SHADOW_NOMANGLE_START
+#define SHADOW_NOMANGLE_END
+#endif
+
 // platform specific defines
 #include <_ShadowOs.h>
 #include <_ShadowArch.h>

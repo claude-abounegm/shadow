@@ -9,6 +9,8 @@
 
 typedef bool shadow_boolean_t;
 
+SHADOW_NOMANGLE_START
 shadow_Class_t* shadowBoolean_GetClass();
+SHADOW_NOMANGLE_END
 
 #endif

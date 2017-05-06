@@ -9,6 +9,22 @@
 
 typedef void* shadow_ExternalsTest_t;
 
+SHADOW_NOMANGLE_START
+void __shadowExternalTest_PrintfToString(shadow_ExternalsTest_t* ref);
+void __shadowExternalTest_CreateString();
+shadow_Pointer_t* __shadowExternalTest_InitPointer(int number);
+void __shadowExternalTest_PrintPointerData(shadow_ExternalsTest_t* instance, shadow_Pointer_t* ptr);
+
+void _shadowExternalsTest_PrintNumberWithOffset(shadow_ExternalsTest_t* instance, int number);
+void __shadowExternalTest_PrintClasses(shadow_ExternalsTest_t* instance);
+//void __shadowExternalTest_ThrowException(shadow_Object_t* e);
+SHADOW_NOMANGLE_END
+
+/*void __shadowExternalTest_ThrowException(shadow_Object_t* e)
+{
+	throw e;
+}*/
+
 void __shadowExternalTest_PrintfToString(shadow_ExternalsTest_t* ref)
 {
 	// equivalent to ref.toString()
@@ -49,13 +65,12 @@ typedef struct {
 
 shadow_Pointer_t* __shadowExternalTest_InitPointer(int number)
 {
-	TestData* data = malloc(sizeof(TestData));
+	TestData* data = (TestData*)malloc(sizeof(TestData));
 	data->number = number;
 	
 	return shadowPointer_Create(data, SHADOW_CAN_FREE);
 }
 
-void _shadowExternalsTest_PrintNumberWithOffset(shadow_ExternalsTest_t* instance, int number);
 void __shadowExternalTest_PrintPointerData(shadow_ExternalsTest_t* instance, shadow_Pointer_t* ptr)
 {
 	// retrieve the original pointer we allocated earlier

@@ -2,6 +2,8 @@
 #define PRIMITIVE_ARRAY_H
 
 #include <Shadow.h>
+
+SHADOW_NOMANGLE_START
 #include <stddef.h>
 
 // This should be changed when the structure of the arrays change.
@@ -38,11 +40,13 @@ ArrayData* shadowArray_GetData(const shadow_PrimitiveArray_t* shadowArray, Array
  * param data - this is a block of memory initialized using calloc(num, size)
  *				and is the actual data that Shadow will use. So index through that.
  */
-shadow_PrimitiveArray_t* shadowArray_Create(size_t num, shadow_Class_t* class, void** data);
+shadow_PrimitiveArray_t* shadowArray_Create(size_t num, shadow_Class_t* class_, void** data);
 
 /**
  * Frees the array that was created using shadowArray_Create();
  */
 void shadowArray_Free(shadow_PrimitiveArray_t* array);
+
+SHADOW_NOMANGLE_END
 
 #endif

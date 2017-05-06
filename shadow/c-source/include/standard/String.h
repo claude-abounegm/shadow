@@ -6,6 +6,8 @@
 
 #include <Shadow.h>
 
+SHADOW_NOMANGLE_START
+
 typedef void* shadow_String_t;
 
 typedef struct {
@@ -42,4 +44,5 @@ shadow_String_t* shadowString_Create(const char*);
  */
 void shadowString_Free(shadow_String_t* instance);
 
+SHADOW_NOMANGLE_END
 #endif

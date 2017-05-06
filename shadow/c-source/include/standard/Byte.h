@@ -9,6 +9,8 @@
 
 typedef int8_t shadow_byte_t;
 
+SHADOW_NOMANGLE_START
 shadow_Class_t* shadowByte_GetClass();
+SHADOW_NOMANGLE_END
 
 #endif

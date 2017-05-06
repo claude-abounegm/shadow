@@ -4,12 +4,16 @@
 #include <Shadow.h>
 #include <stdlib.h>
 
-shadow_ulong_t* __allocateArray(shadow_Class_t* class, shadow_uint_t elements);
+// PRIVATE METHOD DEFINITIONS //
+SHADOW_NOMANGLE_START
+shadow_ulong_t* __allocateArray(shadow_Class_t* class_, shadow_uint_t elements);
+SHADOW_NOMANGLE_END
+// PRIVATE METHOD DEFINITIONS //
 
 ArrayData* shadowArray_GetData(const shadow_PrimitiveArray_t* shadowArray, ArrayData* array)
 {
 	if(!array) {
-		array = malloc(sizeof(ArrayData));
+		array = (ArrayData*)malloc(sizeof(ArrayData));
 	}
 	
 	array->size = shadowArray->size;
@@ -17,13 +21,13 @@ ArrayData* shadowArray_GetData(const shadow_PrimitiveArray_t* shadowArray, Array
 	return array;
 }
 
-shadow_PrimitiveArray_t* shadowArray_Create(size_t num, shadow_Class_t* class, void** data)
+shadow_PrimitiveArray_t* shadowArray_Create(size_t num, shadow_Class_t* class_, void** data)
 {
 	// we first allocate memory to hold the bare bones of the array
-	shadow_PrimitiveArray_t* ret = malloc(sizeof(shadow_PrimitiveArray_t));
+	shadow_PrimitiveArray_t* ret = (shadow_PrimitiveArray_t*)malloc(sizeof(shadow_PrimitiveArray_t));
 	
 	// now we allocate the actual array
-	ret->data = __allocateArray(class, num);
+	ret->data = __allocateArray(class_, num);
 	
 	// set the class
 	//ret->class = class;

@@ -7,16 +7,17 @@
 #include <string.h>
 
 // METHOD SIGNATURES //
+SHADOW_NOMANGLE_START
 shadow_PrimitiveArray_t* _shadowString_GetDataArray(const shadow_String_t*);
 shadow_boolean_t _shadowString_IsAscii(const shadow_String_t*);
 shadow_String_t* _shadowString_CreateBytes(const shadow_String_t*, shadow_PrimitiveArray_t);
+SHADOW_NOMANGLE_END
 // METHOD SIGNATURES //
-
 
 StringData* shadowString_GetData(const shadow_String_t* instance, StringData* str)
 {
 	if(!str) {
-		str = malloc(sizeof(StringData));
+		str = (StringData*)malloc(sizeof(StringData));
 	}
 	
 	shadowArray_GetData(_shadowString_GetDataArray(instance), (ArrayData*)str);
@@ -31,7 +32,7 @@ char* shadowString_GetCString(const shadow_String_t* instance)
 	shadowString_GetData(instance, &str);
 	
 	// allocate a string which is big enough for the chars + null character
-	char* c_str = malloc(str.size + 1);
+	char* c_str = (char*)malloc(str.size + 1);
 	memcpy(c_str, str.chars, str.size);
 	c_str[str.size] = '\0';
 	

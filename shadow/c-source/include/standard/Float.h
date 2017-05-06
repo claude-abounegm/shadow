@@ -9,6 +9,8 @@
 
 typedef float shadow_float_t;
 
+SHADOW_NOMANGLE_START
 shadow_Class_t* shadowFloat_GetClass();
+SHADOW_NOMANGLE_END
 
 #endif

@@ -5,8 +5,10 @@
 #include <standard/System.h>
 
 // METHOD SIGNATURES //
+SHADOW_NOMANGLE_START
 shadow_ulong_t __ShadowSystem_GetNanoTime(void);
 shadow_ulong_t __ShadowSystem_GetEpochNanoTime(void);
+SHADOW_NOMANGLE_END
 // METHOD SIGNATURES //
 
 #ifdef SHADOW_WINDOWS

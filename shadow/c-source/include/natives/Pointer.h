@@ -1,6 +1,10 @@
 #ifndef SHADOW_POINTER_H
 #define SHADOW_POINTER_H
 
+#include <Shadow.h>
+
+SHADOW_NOMANGLE_START
+
 /**
  * The managed pointer which is the main way to pass handles/pointers between C, LLVM and Shadow code.
  * This is the C pointer representation for shadow:natives@Pointer.
@@ -61,5 +65,7 @@ void* _shadowPointer_Extract(shadow_Pointer_t*);
  *		private extern __ShadowTest_UseSomethingUseful(Pointer) => ();
  */
 #define shadowPointer_Extract(T, shadow_reference) ((T*)_shadowPointer_Extract(shadow_reference))
+
+SHADOW_NOMANGLE_END
 
 #endif

@@ -9,6 +9,8 @@
 
 typedef int32_t shadow_int_t;
 
+SHADOW_NOMANGLE_START
 shadow_Class_t* shadowInt_GetClass();
+SHADOW_NOMANGLE_END
 
 #endif

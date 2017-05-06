@@ -5,6 +5,7 @@
 #include <io/Console.h>
 
 // METHOD SIGNATURES //
+SHADOW_NOMANGLE_START
 void __ShadowConsole_Initialize(void);
 void __ShadowConsole_ReadByte(shadow_byte_t*, shadow_boolean_t*);
 
@@ -13,8 +14,8 @@ void __ShadowConsole_PrintError(shadow_String_t*);
 
 void __ShadowConsole_PrintLine(void);
 void __ShadowConsole_PrintErrorLine(void);
+SHADOW_NOMANGLE_END
 // METHOD SIGNATURES //
-
 
 #ifdef SHADOW_WINDOWS
 	#include <Windows.h>

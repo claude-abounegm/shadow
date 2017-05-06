@@ -7,14 +7,14 @@
 #include <stdint.h>
 
 // METHOD SIGNATURES //
-
+SHADOW_NOMANGLE_START
 // HELPERS
 void _shadowFile_SetHandle(shadow_File_t* instance, shadow_long_t handle);
 
 // to be implemented:
 shadow_boolean_t __shadowFile_Exists(shadow_String_t* str);
 void __shadowFile_Close(shadow_long_t handle);
-
+SHADOW_NOMANGLE_END
 // METHOD SIGNATURES //
 
 #ifdef SHADOW_WINDOWS

@@ -288,7 +288,7 @@ public class Main {
 		
 		// compile the files to assembly, to be ready for linkage
 		List<String> compileCommand = new ArrayList<String>();
-		compileCommand.add("gcc");
+		compileCommand.add("g++");
 		compileCommand.add("-S");
 		
 		// include directories to be in the search path of gcc

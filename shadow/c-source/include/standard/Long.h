@@ -9,6 +9,8 @@
 
 typedef int64_t shadow_long_t;
 
+SHADOW_NOMANGLE_START
 shadow_Class_t* shadowLong_GetClass();
+SHADOW_NOMANGLE_END
 
 #endif

@@ -5,9 +5,10 @@
 #include <standard/CurrentThread.h>
 
 // METHOD SIGNATURES //
+SHADOW_NOMANGLE_START
 shadow_boolean_t __ShadowCurrentThread_Yield(void);
+SHADOW_NOMANGLE_END
 // METHOD SIGNATURES //
-
 
 #ifdef SHADOW_WINDOWS
 	#include <Windows.h>
